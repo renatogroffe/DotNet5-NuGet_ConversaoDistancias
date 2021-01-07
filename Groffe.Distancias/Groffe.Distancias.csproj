@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <PackageId>Groffe.Distancias</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Renato Groffe</Authors>
+    <Company>Groffe</Company>
+    <PackageTags>NuGet;.NET 5;Classlib;GitHub;Actions</PackageTags>
+    <Description>
+      Biblioteca para conversão de distâncias em Milhas para Km
+    </Description>
+  </PropertyGroup>
+
+</Project>
