@@ -23,7 +23,7 @@ jobs:
     - name: Geração do package
       run: dotnet pack ${{ env.CAMINHO_PROJETO }} -c Release -o out
       
-    - name: Push no Nuget
+    - name: Push no NuGet
       run: |
         cd out 
         dotnet nuget push *.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source ${{ secrets.NUGETS_SERVER }} --skip-duplicate
