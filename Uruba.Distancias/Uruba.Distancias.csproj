@@ -5,7 +5,7 @@
     <PackageId>Uruba.DotnetSaturday.Distancias</PackageId>
     <Version>1.0.0</Version>
     <Authors>Tiago Uruba</Authors>
-    <Company>Groffe</Company>
+    <Company>Uruba</Company>
     <PackageTags>NuGet;.NET 5;Classlib;GitHub;Actions</PackageTags>
     <Description>
       Biblioteca para conversão de distâncias em Milhas para Km
