@@ -1,6 +1,3 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
 name: .NET + NuGet
 
 on:
@@ -10,8 +7,10 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
+  pack-push:
+    env:
+      CAMINHO_PROJETO: ./Groffe.Distancias/Groffe.Distancias.csproj
+      
     runs-on: ubuntu-latest
 
     steps:
