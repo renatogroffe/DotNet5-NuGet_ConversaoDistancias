@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Groffe.Distancias
+namespace Uruba.Distancias
 {
     public static class ConversorDistancias
     {
