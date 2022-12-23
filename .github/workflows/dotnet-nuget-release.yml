@@ -7,8 +7,8 @@ on:
     branches: [ "main" ]
 
 jobs:
-  Publish-prerelease:
-      if: contains(github.head_ref, 'main') 
+  Build:
+    if: contains(github.head_ref, 'main') 
     
   pack-push:
     env:
