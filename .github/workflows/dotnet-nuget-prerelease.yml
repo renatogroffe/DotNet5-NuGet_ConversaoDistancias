@@ -1,0 +1,46 @@
+name: .NET + NuGet
+
+on:
+  push:
+    branches: [ "alpha", "beta", "prerelease" ]
+  pull_request:
+    branches: [ "alpha", "beta", "prerelease" ]
+
+jobs:
+  Publish-prerelease:
+      if: contains(github.head_ref, 'alpha') || contains(github.head_ref, 'beta') || contains(github.head_ref, 'prerelease') 
+    
+  pack-push:
+    env:
+      CAMINHO_PROJETO: ./Groffe.Distancias/Groffe.Distancias.csproj
+      
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        # Fetch all commits
+        fetch-depth: 0
+    
+    - name: Semantic versioning
+       id: versioning
+       uses: PaulHatch/semantic-version@v4.0.2
+       with:
+         branch: main
+         tag_prefix: "v"
+         major_pattern: "BREAKING CHANGE:"
+         minor_pattern: "feat:"
+         format: "v${major}.${minor}.${patch}-prerelease${increment}"
+
+    - name: Setup .NET 5
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.101
+        
+    - name: Geração do package
+      run: dotnet pack ${{ env.CAMINHO_PROJETO }} -c Release -o out
+      
+    - name: Push no NuGet
+      run: |
+        cd out 
+        dotnet nuget push '${{ env.CAMINHO_PROJETO }}/*.npkg' --api-key ${{ secrets.NUGET_API_KEY }} --source ${{ secrets.NUGET_SERVER }} --skip-duplicate
