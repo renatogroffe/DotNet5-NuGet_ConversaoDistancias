@@ -7,9 +7,6 @@ on:
     branches: [ "alpha", "beta", "prerelease" ]
 
 jobs:
-  Publish-prerelease:
-      if: contains(github.head_ref, 'alpha') || contains(github.head_ref, 'beta') || contains(github.head_ref, 'prerelease') 
-    
   pack-push:
     env:
       CAMINHO_PROJETO: ./Uruba.Distancias/Uruba.Distancias.csproj
@@ -26,7 +23,7 @@ jobs:
        id: versioning
        uses: PaulHatch/semantic-version@v4.0.2
        with:
-         #branch: main
+         branch: [ "alpha", "beta", "prerelease" ]
          #tag_prefix: "v"
          major_pattern: "BREAKING CHANGE:"
          minor_pattern: "feat:"
@@ -43,4 +40,16 @@ jobs:
     - name: Push no NuGet
       run: |
         cd out 
-        dotnet nuget push '${{ env.CAMINHO_PROJETO }}/*.npkg' --api-key ${{ secrets.NUGET_API_KEY }} --source ${{ secrets.NUGET_SERVER }} --skip-duplicate
+        dotnet nuget push '*.npkg' --api-key ${{ secrets.NUGET_API_KEY }} --source ${{ secrets.NUGET_SERVER }} --skip-duplicate
+    
+    - name: Create Release
+      if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.github_token }}
+      with:
+        tag_name: ${{ steps.versioning.outputs.version }}
+        release_name: ${{ steps.versioning.outputs.version }}
+        prerelease: true
+
+
