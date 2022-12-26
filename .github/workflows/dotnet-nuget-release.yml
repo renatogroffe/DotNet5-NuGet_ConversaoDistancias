@@ -25,10 +25,10 @@ jobs:
       uses: PaulHatch/semantic-version@v4.0.2
       with:
         branch: main
-        # tag_prefix: "v"
+        tag_prefix: "v"
         major_pattern: "BREAKING CHANGE:"
         minor_pattern: "feat:"
-        format: "${major}.${minor}.${patch}-release${increment}"
+        format: "v${major}.${minor}.${patch}"
 
     - name: Setup .NET 5
       uses: actions/setup-dotnet@v1
