@@ -1,6 +1,6 @@
 name: .NET + NuGet
 
-#Trigger
+##Trigger
 on:
   push:
     branches: [ "main" ]
