@@ -7,10 +7,9 @@ on:
     branches: [ "main" ]
 
 jobs:
-  Build:
-    pack-push:
-      env:
-        CAMINHO_PROJETO: ./Groffe.Distancias/Groffe.Distancias.csproj
+  pack-push:
+    env:
+      CAMINHO_PROJETO: ./Groffe.Distancias/Groffe.Distancias.csproj
       
     runs-on: ubuntu-latest
 
