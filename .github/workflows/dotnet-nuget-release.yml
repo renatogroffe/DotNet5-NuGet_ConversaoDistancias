@@ -28,7 +28,7 @@ jobs:
         # tag_prefix: "v"
         major_pattern: "BREAKING CHANGE:"
         minor_pattern: "feat:"
-        format: "${major}.${minor}.${patch}-prerelease${increment}"
+        format: "${major}.${minor}.${patch}-release${increment}"
 
     - name: Setup .NET 5
       uses: actions/setup-dotnet@v1
