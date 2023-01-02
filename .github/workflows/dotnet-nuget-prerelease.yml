@@ -1,4 +1,4 @@
-name: .NET + NuGet
+name: Publish Prerelease
 
 on:
   pull_request:
