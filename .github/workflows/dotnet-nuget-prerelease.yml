@@ -38,11 +38,16 @@ jobs:
         major_pattern: "break:"
         minor_pattern: "feat:"
         patch_pattern: "fix:"
-        format: "${major}.${minor}.${patch}-${{ env.PRERELEASE }}${increment}"
+        format: "${major} ${minor}.${patch}-${{ env.PRERELEASE }}${increment}"
 
     - name: Build Project and Generate Package
       run: dotnet build ${{ env.PROJECT_PATH }} -c Release -p:PackageVersion=${{ steps.versioning.outputs.version }} -o ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
-            
+      
+    - name: Print Workspace Content
+      run: |
+        cd ${{ github.workspace }}
+        ls -lha
+        
     - name: Push Package on NuGet
       run: dotnet nuget push '${{ env.PACKAGE_OUTPUT_DIRECTORY }}/*.nupkg' --api-key ${{ secrets.NUGET_API_KEY }} --source ${{ secrets.NUGET_SERVER }} --skip-duplicate
     
