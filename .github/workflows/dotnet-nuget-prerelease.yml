@@ -6,7 +6,7 @@ on:
 
 jobs:
   Publish-prerelease:
-    if: contains(github.head_ref, "alpha") || contains(github.head_ref, "beta") || contains(github.head_ref, "prerelease")
+    if: contains(github.head_ref, 'alpha') || contains(github.head_ref, 'beta') || contains(github.head_ref, 'prerelease')
     runs-on: ubuntu-latest
 
     env:
